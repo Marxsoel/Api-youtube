@@ -13,13 +13,19 @@ $(document).ready(function() {
 
     function pergarVideos(id) {
         $.get("https://www.googleapis.com/youtube/v3/playlistItems", {
-                part:'snippet',
-                maxResults: 10,
-                playlistId: id,
-                key: 'AIzaSyA6SGlo9kJELISv7iTqEKTpUB7ZEgkCPlI'},
-        function(data) {
-            console.log(data);
-        }
+                    part:'snippet',
+                    maxResults: 12,
+                    playlistId: id,
+                    key: 'AIzaSyA6SGlo9kJELISv7iTqEKTpUB7ZEgkCPlI'},
+            function(data) {
+                var imagem;
+                var arquivo;
+                $.each(data.items, function (i, item) {
+                    imagem = item.snippet.thumbnails.medium.url;
+                    arquivo = '<li><img src= "' + imagem + '"/></li>';
+                    $('div#janela ul').append(arquivo);
+                });
+            }
         )
     }
 });
