@@ -20,12 +20,21 @@ $(document).ready(function() {
             function(data) {
                 var imagem;
                 var arquivo;
+                
+                console.log(data);
                 $.each(data.items, function (i, item) {
                     imagem = item.snippet.thumbnails.medium.url;
-                    arquivo = '<li><img src= "' + imagem + '"/></li>';
+                    titulo = item.snippet.title;
+                    data = formatarData(item.snippet.publishedAt);
+                    descricao = item.snippet.description;
+                    arquivo = '<li class= "principal"><div class="foto"><img src= "' + imagem + '"/><div class= "legenda"><h5>' + titulo + '</h5><p>' + data + '</p></div></div></li>';
                     $('div#janela ul').append(arquivo);
                 });
             }
         )
+    }
+
+    function formatarData (data) {
+        return data.substr(8,2) + '/' + data.substr(5,2) + "/" + data.substr(0,4);
     }
 });
