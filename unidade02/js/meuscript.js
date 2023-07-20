@@ -5,7 +5,7 @@ $(document).ready(function() {
     $.get("https://www.googleapis.com/youtube/v3/channels", {
             part: 'contentDetails',
             forUsername: nomeCanal,
-            key: 'AIzaSyB49WfTkgfK2menTbmVCkLG0f9cYWQ9XKU'},
+            key: 'AIzaSyA6SGlo9kJELISv7iTqEKTpUB7ZEgkCPlI'},
             function(data) {
                 upload_id = data.items[0].contentDetails.relatedPlaylists.uploads;
                 pegarVideos(upload_id);
@@ -17,14 +17,14 @@ $(document).ready(function() {
                     part:'snippet',
                     maxResults: 12,
                     playlistId: id,
-                    key: 'AIzaSyB49WfTkgfK2menTbmVCkLG0f9cYWQ9XKU'},
+                    key: 'AIzaSyA6SGlo9kJELISv7iTqEKTpUB7ZEgkCPlI'},
             function(data) {
                 var imagem;
                 var arquivo;
                 
                 $.each(data.items, function(i, item) {
                     videoId     = item.snippet.resourceId.videoId;
-                    arquivo = '<li></li>';
+                    arquivo = '<li><iframe width="320" height="180" src="https://www.youtube.com/embed/' + videoId + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></li>';
                     $('div#janela ul').append(arquivo);
                 });
             }

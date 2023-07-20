@@ -1,4 +1,4 @@
-var nomeCanal = 'backtotriangle';
+var nomeCanal = 'codigofontetv';
 var upload_id;
 $(document).ready(function() {
     $.get("https://www.googleapis.com/youtube/v3/channels", {
@@ -27,7 +27,8 @@ $(document).ready(function() {
                     titulo = item.snippet.title;
                     data = formatarData(item.snippet.publishedAt);
                     descricao = item.snippet.description;
-                    arquivo = '<li class= "principal"><div class="foto"><img src= "' + imagem + '"/><div class= "legenda"><h5>' + titulo + '</h5><p>' + data + '</p></div></div></li>';
+                    videoId   = item.snippet.resourceId.videoId;
+                    arquivo = '<li class= "principal"><a class="fancybox-media" href="https://www.youtube.com/watch?v='+ videoId +' "> <div class="foto"><img src= "' + imagem + '"/><div class= "legenda"><h5>' + titulo + '</h5><p>' + data + '</p></div></div></a></li>';
                     $('div#janela ul').append(arquivo);
                 });
             }
